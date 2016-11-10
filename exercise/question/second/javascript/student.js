@@ -1,6 +1,4 @@
-var selected;
-
-var data = [
+var studentData = [
     {name: 'ramesh', subject: 'maths', score: 87},
     {name: 'suresh', subject: 'maths', score: 45},
     {name: 'pokemon', subject: 'english', score: 65},
@@ -15,73 +13,57 @@ var data = [
     {name: 'pokemon', subject: 'social studies', score: 32}
 ];
 
-var sortByName = function () {
-    var result = selected.sort(function (a, b) {
-        return d3.ascending(a.name, b.name);
-    });
-    return result;
-};
+var subjects = ['maths', 'english', 'kannada', 'science', 'social studies', 'bengali', 'tamil', 'sports'];
+var colors = d3.scaleOrdinal(d3.schemeCategory10).domain(subjects);
 
-var sortBySubject = function () {
-    var result = selected.sort(function (a, b) {
-        return d3.ascending(a.subject, b.subject);
-    });
-    return result;
-};
+var studentChart = function studentChart() {
 
-var sortByScore = function () {
-    var result = selected.sort(function (a, b) {
-        return d3.ascending(a.score, b.score);
-    });
-    return result;
-};
-
-
-var getSubjects = function () {
-    var subjects = data.map(function (d) {
-        return d.subject;
-    });
-    return getUnique(subjects);
-};
-
-var getUnique = function (subjects) {
-    return subjects.filter(function (value, index, array) {
-        return array.indexOf(value) === index;
-    })
-};
-
-var loadChart = function () {
-    var subjects = getSubjects();
-    var color = d3.scaleOrdinal(d3.schemeCategory10).domain(subjects);
-    var chart = d3.select('.container').selectAll('div')
-        .data(data, function (d) {
-            return d.score
+    var bar = d3.select('.container')
+        .selectAll('div').data(studentData, function (d) {
+            return d.name;
         });
-    selected = chart.enter().append('div')
-        .style('width', function (d) {
-            return d.score * 5 + "px"
-        })
-        .attr('class', 'bar-chart')
-        .style('background', function (d) {
-            return color(d.subject)
-        })
-        .text(function (d) {
-            return d.name + " " + d.score
-        })
+
+    bar.enter().append('div').style('width', function (d) {
+        return d.score * 5 + "px";
+    }).style("background-color", function (d) {
+        return colors(d.subject);
+    }).text(function (d) {
+        return d.name + " " + d.score;
+    }).attr('class', 'student-chart');
+
+    bar.exit().remove();
 };
 
-var createLegend = function () {
-    var legend = d3.select('.legend').selectAll('div')
-        .data(data, function (d) {
-            return getSubjects();
-        });
-    selected = legend.enter().append('div')
-        .style('width', function (d) {
-            return d.score * 5 + "px"
-        })
-        .attr('class', 'bar-chart')
-        .style('background', function (d) {
-            return color(d.subject)
-        })
-    };
-    window.onload = loadChart;
+var updateData = function updateData(val) {
+    return d3.selectAll('.student-chart').sort(function (a, b) {
+        return d3.ascending(a[val], b[val]);
+    });
+};
+
+var sortByName = function sortByName() {
+    return updateData('name');
+};
+
+var sortBySubject = function sortBySubject() {
+    return updateData('subject');
+};
+
+var sortByScore = function sortByScore() {
+    return updateData('score');
+};
+
+var legend = function legend() {
+    return d3.select('.legend').selectAll('div')
+        .data(subjects)
+        .enter()
+        .append('div').style('width', '70px')
+        .style('background-color', function (d) {
+            return colors(d);
+        }).text(function (d) {
+            return d;
+        }).classed('legends', true);
+};
+
+window.onload = function () {
+    return studentChart(), legend();
+};

@@ -1,24 +1,24 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <title>Chart With Random Number</title>
-    <!--<link rel="stylesheet" type="text/css" href="student.css">-->
-    <link rel="stylesheet" type="text/css" href="table.css">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./student.css">
+    <title>Student Records</title>
 </head>
 <body>
-<script type="text/javascript" src="javascript/d3.v4.min.js"></script>
-<!--<script type="text/javascript" src="javascript/student.js"></script>-->
-<script type="text/javascript" src="javascript/table.js"></script>
-<!--<center><h1>Chart With Random Number</h1></center>-->
 <div class="container"></div>
-<br>
-sort by:
-<!--<button onclick="sortBySubject()">subject</button>-->
-<!--<button onclick="sortByName()">name</button>-->
-<!--<button onclick="sortByScore()">score</button>-->
-<div>
-    <!--<div class="label"> Subjects :</div>-->
-    <!--<div class="labels"></div>-->
+<div class="button">
+    <p> Sort by:
+        <button type="button" name="name" onclick="sortByName()">Name</button>
+        <button type="button" name="subject" onclick="sortBySubject()">Subject</button>
+        <button type="button" name="score" onclick="sortByScore()">Score</button>
+    </p>
 </div>
+<div class="legend">Subjects: </div>
+<script type="text/javascript" src="../../lib/d3.v4.min.js"></script>
+<script type="text/javascript" src="javascript/student.js"></script>
 </body>
 </html>
