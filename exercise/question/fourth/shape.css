@@ -1,23 +1,24 @@
 line {
-    stroke-width: 2px;
+    stroke-width: 1px;
     stroke: grey;
 }
 
 circle {
-    stroke-width: 2px;
+    stroke-width: 1px;
     stroke: red;
     fill: none;
+    margin-top: 1px;
 }
 
 rect {
-    stroke-width: 2px;
+    stroke-width: 1px;
     stroke: steelblue;
     fill: none;
 
 }
 
 polygon {
-    stroke-width: 2px;
+    stroke-width: 1 px;
     stroke: green;
     fill: none;
 
