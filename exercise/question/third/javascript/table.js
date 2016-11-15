@@ -6,7 +6,7 @@ var createTable = function createTable() {
 
     var scale = d3.scaleLinear()
         .domain([0, 10])
-        .range(['italic bold 12px/30px Arial, serif', 'italic bold 120px/300px Arial, serif']);
+        .range([' bold 12px/30px Arial, serif', ' bold 120px/180px Arial, serif']);
 
     box.selectAll('div')
         .data(data)
