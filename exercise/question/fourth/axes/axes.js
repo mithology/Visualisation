@@ -1,5 +1,5 @@
-const WIDTH = 1280;
-const HEIGHT = 800;
+const WIDTH = 800;
+const HEIGHT = 600;
 const MARGIN = 30;
 
 var data = [
@@ -13,6 +13,24 @@ var data = [
     , {x: 8, y: 3}
     , {x: 9, y: 2}];
 var sinData = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+var curveArray = [
+    {"d3Curve": d3.curveLinear},
+    {"d3Curve": d3.curveLinearClosed},
+    {"d3Curve": d3.curveStepAfter},
+    {"d3Curve": d3.curveBasis},
+    {"d3Curve": d3.curveBundle},
+    {"d3Curve": d3.curveCardinal},
+    {"d3Curve": d3.curveCardinalClosed},
+    {"d3Curve": d3.curveCatmullRom}
+];
+
+var interpolation = function () {
+    curveArray.forEach(function (x) {
+        loadChart(x)
+    });
+
+};
 
 var xScale = d3.scaleLinear()
     .domain([0, 1])
@@ -45,7 +63,7 @@ var circleGenerator = function (xValue, yValue, data, container) {
         .attr('cx', xValue)
         .attr('cy', yValue);
 };
-var loadChart = function () {
+var loadChart = function (x) {
     var svg = d3.select('.container').append('svg')
         .attr('width', WIDTH)
         .attr('height', HEIGHT);
@@ -67,16 +85,15 @@ var loadChart = function () {
     var line = d3.line()
         .x(xValue)
         .y(yValue)
-        .curve(d3.curveStepAfter);
+        .curve(x.d3Curve);
+
 
     var sine = d3.line()
         .x(sinValue_X)
         .y(sinValue)
-        .curve(d3.curveStepAfter);
-
+        .curve(x.d3Curve);
     g.append("path")
         .attr("d", line(data))
-
         .classed('line-path', true);
 
     g.append("path")
@@ -90,4 +107,4 @@ var loadChart = function () {
 
 };
 
-window.onload = loadChart;
+window.onload = interpolation;
