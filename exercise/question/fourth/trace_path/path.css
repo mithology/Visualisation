@@ -1,0 +1,10 @@
+.sine-path {
+    stroke: darkred;
+    stroke-width: 2px;
+    fill: none;
+}
+
+circle {
+    stroke: steelblue;
+    fill: white;
+}
