@@ -12,7 +12,7 @@ var data = [
     , {x: 7, y: 2}
     , {x: 8, y: 3}
     , {x: 9, y: 2}];
-
+var sinData = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 var xScale = d3.scaleLinear()
     .domain([0, 1])
@@ -27,9 +27,13 @@ var yValue = function (q) {
 };
 var xValue = function (q) {
     return xScale(q.x / 10);
+
+};
+var sinValue_X = function (q) {
+    return xScale(q / 10);
 };
 var sinValue = function (q) {
-    return yScale(Math.sin(q.x) / 10 + 0.5);
+    return yScale(Math.sin(q) / 10 + 0.5);
 };
 var translate = function (x, y) {
     return "translate(" + x + "," + y + ")";
@@ -66,7 +70,7 @@ var loadChart = function () {
         .curve(d3.curveStepAfter);
 
     var sine = d3.line()
-        .x(xValue)
+        .x(sinValue_X)
         .y(sinValue)
         .curve(d3.curveStepAfter);
 
@@ -76,11 +80,11 @@ var loadChart = function () {
         .classed('line-path', true);
 
     g.append("path")
-        .attr("d", sine(data))
+        .attr("d", sine(sinData))
         .classed('sine-path', true);
 
     circleGenerator(xValue, yValue, data, g);
-    circleGenerator(xValue, sinValue, data, g);
+    circleGenerator(sinValue_X, sinValue, sinData, g);
 
     g.selectAll('circle').exit().remove();
 
