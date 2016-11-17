@@ -22,25 +22,31 @@ var yScale = d3.scaleLinear()
     .domain([0, 1])
     .range([HEIGHT - (2 * MARGIN), 0]);
 
+var yValue = function (q) {
+    return yScale(q.y / 10);
+};
+var xValue = function (q) {
+    return xScale(q.x / 10);
+};
+var sinValue = function (q) {
+    return yScale(Math.sin(q.x) / 10 + 0.5);
+};
 var translate = function (x, y) {
     return "translate(" + x + "," + y + ")";
 };
-
 var circleGenerator = function (xValue, yValue, data, container) {
     container.append('g').selectAll('circle').data(data)
         .enter().append('circle')
         .attr('r', 4)
         .attr('cx', xValue)
         .attr('cy', yValue);
-}
-
+};
 var loadChart = function () {
     var svg = d3.select('.container').append('svg')
         .attr('width', WIDTH)
         .attr('height', HEIGHT);
-
-
     var xAxis = d3.axisBottom(xScale).ticks(10);
+
     var yAxis = d3.axisLeft(yScale).ticks(10);
 
     svg.append('g')
@@ -69,25 +75,12 @@ var loadChart = function () {
 
     g.append("path")
         .attr("d", sine(data))
-        .classed('line-path', true);
-
+        .classed('sine-path', true);
     circleGenerator(xValue, yValue, data, g);
+
     circleGenerator(xValue, sinValue, data, g);
-
     g.selectAll('circle').exit().remove();
+
 };
-
-
-var yValue = function (q) {
-    return yScale(q.y / 10);
-};
-
-var xValue = function (q) {
-    return xScale(q.x / 10);
-}
-
-var sinValue = function (q) {
-    return yScale(Math.sin(q.x) / 10 + 0.5);
-}
 
 window.onload = loadChart;

@@ -1,5 +1,10 @@
 .line-path{
-    stroke: steelblue;
+    stroke: darkblue;
+    stroke-width: 2px;
+    fill: none;
+}.sine-path{
+    stroke: darkred;
+    stroke-width: 2px;
     fill: none;
 }
 circle{
