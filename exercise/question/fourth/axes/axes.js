@@ -62,11 +62,13 @@ var loadChart = function () {
 
     var line = d3.line()
         .x(xValue)
-        .y(yValue);
+        .y(yValue)
+        .curve(d3.curveStepAfter);
 
     var sine = d3.line()
         .x(xValue)
-        .y(sinValue);
+        .y(sinValue)
+        .curve(d3.curveStepAfter);
 
     g.append("path")
         .attr("d", line(data))
@@ -76,9 +78,10 @@ var loadChart = function () {
     g.append("path")
         .attr("d", sine(data))
         .classed('sine-path', true);
-    circleGenerator(xValue, yValue, data, g);
 
+    circleGenerator(xValue, yValue, data, g);
     circleGenerator(xValue, sinValue, data, g);
+
     g.selectAll('circle').exit().remove();
 
 };
