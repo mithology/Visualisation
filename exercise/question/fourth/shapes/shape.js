@@ -21,4 +21,3 @@ var rectangle = svgContainer.append("rect")
     .attr("height", 100);
 var traingle = svgContainer.append("polygon")
     .attr("points", "460,100,460,100,510,0,560,100");
-
