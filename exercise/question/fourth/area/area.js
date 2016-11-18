@@ -30,7 +30,7 @@ var circleGenerator = function (xValue, yValue, data, container) {
         .attr('cx', xValue)
         .attr('cy', yValue);
 };
-var loadChart = function () {
+var loadChart = function (x) {
     var svg = d3.select('.container').append('svg')
         .attr('width', WIDTH)
         .attr('height', HEIGHT);
@@ -47,19 +47,11 @@ var loadChart = function () {
 
     var g = svg.append('g')
         .attr('transform', translate(MARGIN, MARGIN));
-
-    var sine = d3.line()
-        .x(sinValueX)
-        .y(sinValueY);
-
-    g.append("path")
-        .attr("d", sine(sinData))
-        .classed('line-path', true);
-
     var area = d3.area()
         .x(sinValueX)
         .y0(HEIGHT - 2 * MARGIN)
-        .y1(sinValueY);
+        .y1(sinValueY)
+        .curve(x.d3Curve);
 
     g.append("path")
         .attr("d", area(sinData))
@@ -69,4 +61,17 @@ var loadChart = function () {
 
     circleGenerator(sinValueX, sinValueY, sinData, g);
 };
-window.onload = loadChart;
+
+var tensionArray = [
+    {'d3Curve': d3.curveLinearClosed},
+    {'d3Curve': d3.curveStepAfter},
+    {'d3Curve': d3.curveBasisOpen},
+    {'d3Curve': d3.curveCardinalClosed},
+    {'d3Curve': d3.curveBasis}
+];
+var tensionInterpolate = function tensionInterpolate() {
+    return tensionArray.forEach(function (x) {
+        return loadChart(x);
+    });
+};
+window.onload = tensionInterpolate;
