@@ -1,0 +1,16 @@
+.area-path {
+    fill: aliceblue;
+    stroke-width: 1px;
+}
+
+circle {
+    stroke: steelblue;
+    fill: white;
+    stroke-width: 2px;
+}
+
+.line-path {
+    stroke-width: 2px;
+    stroke: darkblue;
+    fill: none;
+}
