@@ -30,7 +30,7 @@ var circleGenerator = function (xValue, yValue, data, container) {
         .attr('cx', xValue)
         .attr('cy', yValue);
 };
-var loadChart = function () {
+var loadChart = function (x) {
     var svg = d3.select('.container').append('svg')
         .attr('width', WIDTH)
         .attr('height', HEIGHT);
@@ -51,7 +51,9 @@ var loadChart = function () {
 
     var sine = d3.line()
         .x(sinValueX)
-        .y(sinValueY);
+        .y(sinValueY)
+        .curve(x.d3Curve);
+    ;
 
     g.append("path")
         .attr("d", sine(sinData))
@@ -63,4 +65,17 @@ var loadChart = function () {
 
 };
 
-window.onload = loadChart;
+var tensionArray = [
+    {'d3Curve': d3.curveCardinal.tension(-1.5)},
+    {'d3Curve': d3.curveCardinal.tension(-1)},
+    {'d3Curve': d3.curveCardinal.tension(-0.5)},
+    {'d3Curve': d3.curveCardinal.tension(0.5)},
+    {'d3Curve': d3.curveCardinal.tension(1)}
+];
+
+var tensionInterpolate = function tensionInterpolate() {
+    return tensionArray.forEach(function (x) {
+        return loadChart(x);
+    });
+};
+window.onload = tensionInterpolate;
