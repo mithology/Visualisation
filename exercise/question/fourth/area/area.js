@@ -69,19 +69,4 @@ var loadChart = function () {
 
     circleGenerator(sinValueX, sinValueY, sinData, g);
 };
-
-// var tensionArray = [
-//     {'d3Curve': d3.curveCardinal.tension(-1.5)},
-//     {'d3Curve': d3.curveCardinal.tension(-1)},
-//     {'d3Curve': d3.curveCardinal.tension(-0.5)},
-//     {'d3Curve': d3.curveCardinal.tension(0.5)},
-//     {'d3Curve': d3.curveCardinal.tension(1)}
-// ];
-//
-// var tensionInterpolate = function tensionInterpolate() {
-//     return tensionArray.forEach(function (x) {
-//         return loadChart(x);
-//     });
-// };
-// window.onload = tensionInterpolate;
 window.onload = loadChart;

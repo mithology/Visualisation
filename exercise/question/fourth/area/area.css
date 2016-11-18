@@ -1,5 +1,6 @@
 .area-path {
-    fill: aliceblue;
+    fill: steelblue;
+    fill-opacity: .2;
     stroke-width: 1px;
 }
 
