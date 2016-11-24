@@ -1,0 +1,29 @@
+div {
+    padding-top: 20px;
+    margin-left: 100px;
+    font-size: 25px;
+}
+
+.value {
+    margin-left: 20px;
+    text-align: left;
+}
+
+button {
+    background-color: lightgrey;
+    border-radius: 20px;
+    border-color: lightgray;
+
+}
+
+#numberValue {
+    height: 25px;
+    width: 115px;
+    background-color: rgb(220, 222, 226);
+}
+
+#quantileValue {
+    height: 25px;
+    width: 115px;
+    background-color: rgb(220, 222, 226);
+}
