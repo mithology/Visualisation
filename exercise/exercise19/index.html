@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Demonstrate</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h1>Demonstrate</h1>
+<script type="text/javascript" src="../../exercise/lib/d3.v4.min.js"></script>
+<script type="text/javascript" src="./visualize.js"></script>
+
+<div class="userInterface">
+    Enter numbers:
+    <input type="text" onkeypress="validateInput(event)" id="numberValue">
+    <button onclick="dataStore()">Submit</button>
+    Enter Bisector Value:
+    <input type="text" onkeypress="validateInput(event)" id="bisectorValue">
+    <button onclick="bisectorData()">Submit</button>
+</div>
+<div class="value"></div>
+<div class="bisectorValue"></div>
+<div class="container"></div>
+<div class="button">
+    Executive methods:
+    <button type="button" onclick="sortByMethod('Ascending', d3.ascending)">Ascending</button>
+    <button type="button" onclick="sortByMethod('Descending', d3.descending)">Descending</button>
+    <button type="button" onclick="sortByScan()">Scan</button>
+    <button type="button" onclick="getBisector()">Bisect</button>
+    <button type="button" onclick="getBisector()">Bisector</button>
+
+</div>
+</body>
+</html>
