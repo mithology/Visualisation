@@ -1,5 +1,5 @@
 var quantileValue, set;
-var massage = "Please Enter value";
+var message = "Please Enter value";
 
 var showUserValue = function (div, data) {
     d3.select(div).html("");
@@ -15,7 +15,7 @@ var showUserValue = function (div, data) {
 
 var sortByMethod = function (methodName, method) {
     if (set == '' || !set) {
-        alert(massage)
+        alert(message)
     } else {
         return showUserValue('.container', {
             title: methodName + ' of numbers :-  ', method: method(set)
@@ -25,7 +25,7 @@ var sortByMethod = function (methodName, method) {
 
 var sortByQuantile = function () {
     if (!quantileValue) {
-        alert(massage)
+        alert(message)
     } else {
         return showUserValue('.container', {
             title: 'Quantile of number :-  ', method: d3.quantile(set, quantileValue)
@@ -39,7 +39,7 @@ var dataStore = function () {
         return d;
     });
     if (set == '') {
-        alert(massage);
+        alert(message);
         d3.select('.value').html("");
     } else {
         d3.select('.value').html("");
@@ -59,7 +59,7 @@ var quantile = function () {
             title: 'Entered quantile value is :-  ', method: quantileValue
         });
     } else {
-        alert(massage);
+        alert(message);
         d3.select('.quantileValue').html("");
     }
     document.getElementById("quantileValue").value = '';
